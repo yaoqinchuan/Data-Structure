@@ -13,7 +13,7 @@ Stack *Sinit(void)
     return stack;    
 }
 
-void Sdestory(Stack *stack)
+void Sfree(Stack *stack)
 {
    if (stack == NULL) {
         return;
@@ -55,6 +55,20 @@ int Spop(Stack *stack)
     stack->size--;
     free(temp_node);
     return temp_data;
+}
+bool Sexist(Stack *stack, int val) 
+{
+    if (stack->top == NULL) {
+	return false;
+    }
+    Snode *temp_node = stack->top;
+    while(temp_node != NULL) {
+        if (temp_node->val == val) {
+	     return true;
+	}
+	temp_node = temp_node->next;
+    }
+    return false;
 }
 int Stop(Stack *stack)
 {

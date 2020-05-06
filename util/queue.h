@@ -20,7 +20,7 @@ typedef struct Queue
 // 队列初始化
 extern Queue *Qinit(void);
 // 队列销毁
-extern void Qdestory(Queue *queue);
+extern void Qfree(Queue *queue);
 // 队列加入元素
 extern void Qpush(Queue *queue, int val);
 // 队列弹出
@@ -29,5 +29,7 @@ extern int Qpop(Queue *queue);
 extern int Qfront(Queue *queue);
 // 返回队列大小
 extern int Qsize(Queue *queue);
+// 判断队列中是否存在指定元素
+extern bool Qexist(Queue *queue, int elem);
 // 返回队列是否为空
 extern bool Qempty(Queue *queue);

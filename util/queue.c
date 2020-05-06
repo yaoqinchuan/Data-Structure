@@ -13,7 +13,7 @@ Queue *Qinit(void)
     return queue;    
 }
 
-void Qdestory(Queue *queue)
+void Qfree(Queue *queue)
 {
    if (queue == NULL) {
         return;
@@ -35,7 +35,7 @@ void Qpush(Queue *queue, int val)
      Qnode *temp_node = (Qnode *)malloc(sizeof(Qnode));
      memset(temp_node, 0, sizeof(Qnode));
      temp_node->val = val;
-     if (queue->tail == NULL) {
+     if ((queue->tail == NULL) || (queue->front == NULL)) {
          queue->front = temp_node;
      } else {
          queue->tail->next = temp_node;
@@ -67,6 +67,20 @@ int Qfront(Queue *queue)
 int Qsize(Queue *queue)
 {
    return queue->size;
+}
+bool Qexist(Queue *queue, int elem)
+{
+    if (queue->size == 0) {
+        return false;
+    }
+    Qnode *temp_node = queue->front;
+    while(temp_node != NULL) {
+        if (temp_node->val == elem) {
+	    return true;
+	}
+	temp_node = temp_node->next; 
+    }
+    return false;
 }
 bool Qempty(Queue *queue)
 {
